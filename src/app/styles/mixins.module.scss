@@ -1,0 +1,157 @@
+@import "./variables.module.scss";
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes revBounce {
+  0%,
+  100% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@mixin componentPadding($amount) {
+  padding: 0 $amount;
+}
+
+@mixin flexibleBackgroundColor($r, $g, $b, $a) {
+  background-color: rgba($r, $g, $b, $a);
+}
+
+@mixin btnStyles(
+  $boderColor: $mainColor,
+  $borderThickness: 3px,
+  $fontColor: $lightShade,
+  $btnWidth: 100px,
+  $margin: none,
+  $fontWeight: bold,
+  $height: 30px,
+  $fontSize: 1.8rem,
+  $bgColor: none,
+  $preOpacity: 0.5,
+  $postOpacity: 1
+) {
+  all: unset;
+  border: $borderThickness solid $boderColor;
+  color: $fontColor;
+  padding: 10px;
+  width: $btnWidth;
+  height: $height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
+  opacity: $preOpacity;
+  margin: $margin;
+  font-size: $fontSize;
+  background-color: $bgColor;
+
+  &:hover {
+    cursor: pointer;
+    transition-timing-function: ease-in;
+    transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(-3px);
+    opacity: $postOpacity;
+  }
+}
+
+@mixin hoverEffect($initOpacity: 0.5) {
+  transition: all 0.1s ease-in-out;
+  opacity: $initOpacity;
+
+  &:hover {
+    cursor: pointer;
+    transition-timing-function: ease-in;
+    transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+@mixin gradient($from: #f9f8f8, $to: #93b1c1) {
+  background: linear-gradient(to bottom, $from, $to);
+}
+
+@mixin gradientText($from: #f9f8f8, $to: #93b1c1) {
+  font-weight: bold;
+  background: linear-gradient(90deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin vertHorCent() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin verCent() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin horCent() {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin revBounce() {
+  animation: revBounce 2s infinite;
+}
+
+@mixin bounce() {
+  animation: bounce 2s infinite;
+}
+
+@mixin wave() {
+  animation: wave 1s infinite;
+}
+
+@keyframes rotateClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin comeToLife() {
+  animation: rotateClockwise 150s linear infinite;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin fadeInUp() {
+  animation: fadeInUp 0.5s ease-out;
+}
