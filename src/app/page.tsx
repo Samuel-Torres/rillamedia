@@ -4,12 +4,22 @@ import styles from "./page.module.scss";
 export default function Home() {
   return (
     <main className={styles.container}>
-      <h1>Heading 1</h1>
-      <h2>Heading 2</h2>
-      <h3>Heading 3</h3>
-      <h4>Heading 4</h4>
-      <h5>Heading 5</h5>
-      <h6>Heading 6</h6>
+      <div className={styles.heroContainer}>
+        <div className={styles.textContainer}>
+          <h1>
+            Designing <span className={styles.highlight}>SEO Optimized</span>{" "}
+            Websites With Your Business Needs In Mind!
+          </h1>
+          <h3>203-475-1263</h3>
+        </div>
+        <div className={styles.imageContainer}>
+          <Image
+            src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725827406/rillamedia/freepik-export-20240908202902eHWG_e9dseo.png"
+            alt="3d fractal"
+            fill={true}
+          />
+        </div>
+      </div>
     </main>
   );
 }

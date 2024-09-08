@@ -3,6 +3,8 @@
    License: none (public domain)
 */
 
+@import "./styles/variables.module.scss";
+
 html,
 body,
 div,
@@ -127,7 +129,9 @@ table {
   border-spacing: 0;
 }
 html {
-  font-size: 10px;
+  background-color: $brandBlack;
+  font-size: 62.5%;
+  font-family: "DM Sans";
 }
 h1 {
   font-size: 3.6rem;
@@ -146,4 +150,20 @@ h5 {
 }
 h6 {
   font-size: 2.4rem;
+}
+p {
+  font-size: 1.6rem;
+}
+a {
+  font-size: 2.4rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+@media (min-width: $smallDesktop) {
+  // app max-width set.
+  // body {
+  //   max-width: 160rem;
+  //   margin: auto;
+  // }
 }
