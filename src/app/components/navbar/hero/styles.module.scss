@@ -1,0 +1,35 @@
+@import "../../../styles/mixins.module.scss";
+@import "../../../styles/variables.module.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem 0;
+  .textContainer {
+    display: flex;
+    padding: 0 2rem;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    h1 {
+      color: white;
+      font-size: 6.4rem;
+      text-align: center;
+    }
+    h3 {
+      color: white;
+    }
+    .highlight {
+      @include gradientText($mainColor, $lightAccent);
+    }
+  }
+  .imageContainer {
+    position: relative;
+    width: 100rem;
+    height: 80rem;
+    z-index: -1;
+    @include comeToLife();
+  }
+}

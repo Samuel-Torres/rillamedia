@@ -3,6 +3,9 @@ import React from "react";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 
+// components:
+import ContactRouterBtn from "../contactRouterBtn/contactRouterBtn";
+
 const Navbar = () => {
   return (
     <div className={styles.container}>
@@ -37,6 +40,7 @@ const Navbar = () => {
         <Link className={styles.hoverLink} href="/blog">
           Blogs
         </Link>
+        <ContactRouterBtn borderColor="white" initialFontColor="white" />
       </div>
     </div>
   );

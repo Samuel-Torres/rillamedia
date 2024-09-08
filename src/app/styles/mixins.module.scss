@@ -92,6 +92,13 @@
   background: linear-gradient(to bottom, $from, $to);
 }
 
+@mixin gradientText($from: #f9f8f8, $to: #93b1c1) {
+  font-weight: bold;
+  background: linear-gradient(90deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @mixin vertHorCent() {
   display: flex;
   justify-content: center;
@@ -131,5 +138,20 @@
 }
 
 @mixin comeToLife() {
-  animation: rotateClockwise 500s linear infinite;
+  animation: rotateClockwise 150s linear infinite;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin fadeInUp() {
+  animation: fadeInUp 0.5s ease-out;
 }
