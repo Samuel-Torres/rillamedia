@@ -4,8 +4,8 @@
 .swipeButton {
   position: relative;
   display: inline-block;
-  width: 15rem;
-  height: 5rem;
+  width: 12rem;
+  height: 4rem;
   font-size: 16px;
   color: white;
   font-weight: bolder;
@@ -56,5 +56,12 @@
   &:hover .arrow {
     opacity: 1;
     transform: translateX(-35px) translateY(-50%);
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .swipeButton {
+    width: 15rem;
+    height: 5rem;
   }
 }
