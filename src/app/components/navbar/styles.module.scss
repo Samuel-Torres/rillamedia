@@ -33,9 +33,6 @@
     }
 
     .logoContainer {
-      position: relative;
-      width: 30rem;
-      height: 15rem;
       @include hoverEffect(1);
     }
     .navLink {
@@ -47,6 +44,17 @@
     }
     .hoverLink {
       @include hoverEffect(0.8);
+    }
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .container {
+    .logoContainer {
+      margin: 0 auto;
+      position: relative;
+      width: 20rem;
+      height: 10rem;
     }
   }
 }
