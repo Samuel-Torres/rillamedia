@@ -17,10 +17,35 @@ async function fetchHomePageData() {
       return { error: `Failed with status: ${res.status}` };
     }
     const data = await res.json();
-    console.log("Current Environment: ", process.env.NEXT_PUBLIC_NODE_ENV);
-    console.log("Fetching From: ", currentEnvUrls);
-    console.log("Res: ", data?.data[0]?.attributes?.sections);
-    return data;
+    const sections = data?.data[0]?.attributes?.sections[0];
+    const heroImages = sections?.heroImage?.data?.attributes?.formats;
+
+    console.log("Res: ", sections?.socialMediaList);
+    return {
+      hero: {
+        heroImages: {
+          small: {
+            url: heroImages?.small?.url,
+            alt: "small hero",
+          },
+          medium: {
+            url: heroImages?.medium?.url,
+            alt: "medium hero",
+          },
+          large: {
+            url: heroImages?.large?.url,
+            alt: "large hero",
+          },
+        },
+        highlightedHeading: {
+          ...sections?.highlightedText,
+        },
+        socialMediaList: sections?.socialMediaList,
+        numberAside: {
+          ...sections?.numberAside,
+        },
+      },
+    };
   } catch (error) {
     return { error: "Error fetching data" };
   }
@@ -28,11 +53,15 @@ async function fetchHomePageData() {
 
 export default async function Home() {
   const data = await fetchHomePageData();
-  console.log("DATA: ", data?.data[0]?.attributes?.sections);
-  // console.log("DATA: ", data?.data[0]?.attributes?.sections);
+  // console.log("DATA: ", data);
   return (
     <main className={styles.container}>
-      <Hero />
+      <Hero
+        heroImages={data?.hero?.heroImages}
+        highlightedHeading={data?.hero?.highlightedHeading}
+        socialMediaList={data?.hero?.socialMediaList}
+        numberAside={data?.hero?.numberAside}
+      />
       <ColoredHeadingAside />
     </main>
   );

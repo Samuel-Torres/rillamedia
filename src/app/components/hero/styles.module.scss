@@ -26,7 +26,7 @@
     width: 100%;
     height: 50%;
     h1 {
-      color: white;
+      color: $brandWhite;
       font-size: 4.4rem;
       text-align: center;
     }
@@ -34,7 +34,7 @@
       display: flex;
       margin-top: 2.5rem;
       justify-content: space-around;
-      // border: 2px solid white;
+      // border: 2px solid $brandWhite;
       width: 40%;
     }
     .iconImageContainer {
@@ -48,7 +48,7 @@
       margin-top: 2.5rem;
       display: flex;
       .phoneNumber {
-        color: white;
+        color: $brandWhite;
         font-size: 3rem;
       }
     }
@@ -93,12 +93,12 @@
       padding: 0 2rem;
       width: 50%;
       h1 {
-        color: white;
+        color: $brandWhite;
         font-size: 6.4rem;
         text-align: center;
       }
       h3 {
-        color: white;
+        color: $brandWhite;
       }
       .highlight {
         @include gradientText($mainColor, $lightAccent);

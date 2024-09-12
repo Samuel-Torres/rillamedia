@@ -27,7 +27,7 @@ const Navbar = () => {
       <Link href="/">
         <div className={styles.logoContainer}>
           <Image
-            src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725819732/rillamedia/Add_a_heading_erltya.png"
+            src="https://res.cloudinary.com/dvz91qyth/image/upload/v1726090165/rillamedia/Rilla_Media_8_gelkib.png"
             alt="logo"
             fill={true}
           />
