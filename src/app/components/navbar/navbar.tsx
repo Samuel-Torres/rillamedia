@@ -38,7 +38,7 @@ const Navbar = () => {
           Our Work
         </Link>
         <Link className={styles.hoverLink} href="/blog">
-          Blogs
+          Insights
         </Link>
         <ContactRouterBtn borderColor="white" initialFontColor="white" />
       </div>

@@ -9,7 +9,18 @@ type SocialMediaList = List<SocialMediaItem>;
 type SocialMediaItem = {
   id: number;
   href: string;
-  altText: string;
+  alt: string;
+  images: {
+    small: {
+      url: string;
+    };
+    medium: {
+      url: string;
+    };
+    large: {
+      url: string;
+    };
+  };
 };
 
 type heroProps = {
@@ -53,30 +64,34 @@ const Hero = ({
   socialMediaList: socials,
   numberAside,
 }: heroProps) => {
+  console.log("PROPS: ", socials);
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
         <h1>
-          Designing <span className={styles.highlight}>SEO Optimized</span>{" "}
-          Websites With Your Business Needs In Mind!
+          {heading?.firstText}{" "}
+          <span className={styles.highlight}>{heading?.highlightedText}</span>{" "}
+          {heading?.remainingText}
         </h1>
         <div className={styles.socials}>
           <div className={styles.iconImageContainer}>
-            {/* {socials?.map((link) => {
+            {socials?.map((link) => {
               // console.log("social id: ", link);
               return (
-                <Image
+                <a
                   key={link?.id}
-                  src={
-                    link && link?.href
-                      ? link?.href
-                      : "https://res.cloudinary.com/dvz91qyth/image/upload/v1725931911/rillamedia/old-typical-phone_asaihu.png"
-                  }
-                  alt={link && link?.href ? link?.href : "icon"}
-                  fill={true}
-                />
+                  href={link && link?.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={link && link?.images?.medium?.url}
+                    alt={link && link?.alt}
+                    fill={true}
+                  />
+                </a>
               );
-            })} */}
+            })}
           </div>
         </div>
         <div className={styles.phoneNumContainer}>
