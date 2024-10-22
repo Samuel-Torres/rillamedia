@@ -40,7 +40,12 @@ const Navbar = () => {
         <Link className={styles.hoverLink} href="/blog">
           Insights
         </Link>
-        <ContactRouterBtn borderColor="white" initialFontColor="white" />
+        <ContactRouterBtn
+          borderColor="white"
+          initialFontColor="white"
+          routeDestination="/contact"
+          ctaText="Let's Talk"
+        />
       </div>
     </div>
   );
