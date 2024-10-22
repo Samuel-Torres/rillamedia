@@ -36,6 +36,13 @@
       justify-content: space-around;
       // border: 2px solid $brandWhite;
       width: 40%;
+      .socialsImageContainer {
+        @include hoverEffect(1);
+        margin-right: 1rem;
+        position: relative;
+        width: 3rem;
+        height: 3rem;
+      }
     }
     .iconImageContainer {
       @include hoverEffect(1);
@@ -44,6 +51,7 @@
       width: 3rem;
       height: 3rem;
     }
+
     .phoneNumContainer {
       margin-top: 2.5rem;
       display: flex;

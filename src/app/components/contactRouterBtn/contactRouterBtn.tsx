@@ -6,12 +6,21 @@ import styles from "./styles.module.scss";
 type buttonProps = {
   borderColor: string;
   initialFontColor: string;
+  ctaText: string;
+  routeDestination: string;
 };
 
-const ContactRouterBtn = ({ borderColor, initialFontColor }: buttonProps) => {
+const ContactRouterBtn = ({
+  borderColor,
+  initialFontColor,
+  ctaText,
+  routeDestination,
+}: buttonProps) => {
+  if (!routeDestination) return null;
+
   return (
     <>
-      <Link href="/contact">
+      <Link href={routeDestination}>
         <button
           className={styles.swipeButton}
           style={{
@@ -19,7 +28,7 @@ const ContactRouterBtn = ({ borderColor, initialFontColor }: buttonProps) => {
             color: `${initialFontColor}`,
           }}
         >
-          <span className={styles.buttonText}>Let's Talk</span>
+          <span className={styles.buttonText}>{ctaText}</span>
           <span className={styles.arrow}>
             <Image
               src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725830651/rillamedia/play_ndj7c2.png"

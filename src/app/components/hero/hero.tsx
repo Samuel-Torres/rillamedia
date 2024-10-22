@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import styles from "./styles.module.scss";
-import ClientImage from "./ClientImage";
+// import ClientImage from "./ClientImage";
 
 type List<T> = Array<T>;
 type SocialMediaList = List<SocialMediaItem>;
@@ -64,7 +64,6 @@ const Hero = ({
   socialMediaList: socials,
   numberAside,
 }: heroProps) => {
-  console.log("PROPS: ", socials);
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
@@ -74,25 +73,24 @@ const Hero = ({
           {heading?.remainingText}
         </h1>
         <div className={styles.socials}>
-          <div className={styles.iconImageContainer}>
-            {socials?.map((link) => {
-              // console.log("social id: ", link);
-              return (
+          {socials?.map((link) => {
+            return (
+              <div key={link?.id} className={styles.socialsImageContainer}>
                 <a
-                  key={link?.id}
                   href={link && link?.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Image
-                    src={link && link?.images?.medium?.url}
+                    className={styles.socialImage}
+                    src={link && link?.images?.small?.url}
                     alt={link && link?.alt}
                     fill={true}
                   />
                 </a>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
         <div className={styles.phoneNumContainer}>
           <div className={styles.iconImageContainer}>
