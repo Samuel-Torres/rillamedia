@@ -34,6 +34,26 @@ export async function fetchHomePageData() {
       };
     });
 
+    const serviceList = sections[3]?.serviceCard?.map((card: any) => {
+      return {
+        ...card,
+        iconImage: {
+          small: {
+            url: card?.iconImage?.data?.attributes.formats?.small?.url,
+            alt: card?.alt,
+          },
+          medium: {
+            url: card?.iconImage?.data?.attributes.formats?.medium?.url,
+            alt: card?.alt,
+          },
+          large: {
+            url: card?.iconImage?.data?.attributes.formats?.large?.url,
+            alt: card?.alt,
+          },
+        },
+      };
+    });
+
     const headlineAside = sections[2];
 
     return {
@@ -61,6 +81,7 @@ export async function fetchHomePageData() {
         },
       },
       headlineAside: headlineAside,
+      serviceList: serviceList,
     };
   } catch (error) {
     return { error: "Error fetching data" };
