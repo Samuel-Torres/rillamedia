@@ -155,3 +155,7 @@
 @mixin fadeInUp() {
   animation: fadeInUp 0.5s ease-out;
 }
+
+@mixin textSpacing() {
+  margin: 1rem 0;
+}

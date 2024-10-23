@@ -27,7 +27,7 @@
     height: 50%;
     h1 {
       color: $brandWhite;
-      font-size: 4.4rem;
+      font-size: 3.4rem;
       text-align: center;
     }
     .socials {
@@ -66,8 +66,9 @@
   }
   .imageContainer {
     position: relative;
-    width: 50rem;
-    height: 40rem;
+
+    width: 35rem;
+    height: 28rem;
     z-index: -1;
     @include comeToLife();
   }
@@ -76,6 +77,23 @@
   .container {
     padding: 0;
     height: calc(100dvh - 15rem);
+  }
+}
+
+@media (min-width: $tablet) {
+  .container {
+    .textContainer {
+      .container {
+        h1 {
+          font-size: 4.4rem;
+        }
+      }
+    }
+
+    .imageContainer {
+      width: 50rem;
+      height: 40rem;
+    }
   }
 }
 

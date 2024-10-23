@@ -1,0 +1,48 @@
+@import "../../../styles/mixins.module.scss";
+@import "../../../styles/variables.module.scss";
+
+.container {
+  background-color: $brandBlack;
+  padding: 1.5rem;
+  width: 90%;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  @include verCent();
+
+  .iconImageContainer {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+  }
+  .infoContainer {
+    p {
+      color: white;
+    }
+    .title {
+      font-size: 2.4rem;
+      text-align: center;
+      @include gradientText($mainColor, $lightAccent);
+      @include horCent();
+      @include textSpacing();
+    }
+    .subheading {
+      @include textSpacing();
+    }
+    .bullet {
+      @include textSpacing();
+    }
+  }
+}
+
+@media (min-width: $tablet) {
+  .container {
+    width: 33%;
+    @include hoverEffect(1);
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .container {
+    @include hoverEffect(1);
+  }
+}
