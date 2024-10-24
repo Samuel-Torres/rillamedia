@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import Image from "next/image";
 
 const ServiceCard = (service: ServiceCardType) => {
+  //   console.log("CHECK: ", service);
   return (
     <div className={styles.container}>
       <div className={styles.iconImageContainer}>
@@ -20,6 +21,9 @@ const ServiceCard = (service: ServiceCardType) => {
         <p className={styles.bullet}>• {service?.bulletOne}</p>
         <p className={styles.bullet}>• {service?.bulletTwo}</p>
         <p className={styles.bullet}>• {service?.bulletThree}</p>
+      </div>
+      <div className={styles.sellingPointContainer}>
+        <p>{service?.sellingPoint}</p>
       </div>
     </div>
   );

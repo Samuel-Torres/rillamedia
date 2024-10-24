@@ -20,6 +20,7 @@ export type ServiceCardType = {
     };
   };
   alt: string;
+  sellingPoint: string;
 };
 
 export type serviceList = {
