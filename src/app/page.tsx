@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { fetchHomePageData } from "./services/homePageData";
+import { getReviews } from "./services/getReviews";
 
 // components:
 import Hero from "./components/hero/hero";
@@ -9,7 +10,8 @@ import Services from "./components/services/services";
 
 export default async function Home() {
   const data = await fetchHomePageData();
-  // console.log("DATA: ", data?.serviceList);
+  // const reviews = await getReviews(); // need actual bank account to fetch reviews.
+
   return (
     <main className={styles.container}>
       <Hero
