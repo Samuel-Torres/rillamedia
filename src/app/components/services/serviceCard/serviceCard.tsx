@@ -22,9 +22,11 @@ const ServiceCard = (service: ServiceCardType) => {
         <p className={styles.bullet}>• {service?.bulletTwo}</p>
         <p className={styles.bullet}>• {service?.bulletThree}</p>
       </div>
-      <div className={styles.sellingPointContainer}>
-        <p>{service?.sellingPoint}</p>
-      </div>
+      {service.sellingPoint && (
+        <div className={styles.sellingPointContainer}>
+          <p>{service?.sellingPoint}</p>
+        </div>
+      )}
     </div>
   );
 };
