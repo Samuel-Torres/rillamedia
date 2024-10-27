@@ -11,9 +11,11 @@ export async function fetchHomePageData() {
     }
     const data = await res.json();
     const sections = data?.data[0]?.attributes?.sections;
-    const heroImages = sections?.heroImage?.data?.attributes?.formats;
+    const heroImages = sections[0]?.heroImage?.data?.attributes?.formats;
 
-    // console.log("DATA SERVER: ", sections);
+    // console.log("uekqrgckugyh: ", sections);
+
+    // console.log("IMAGES: ", heroImages);
 
     const socialMediaList = sections[1]?.socialMediaLinks.map((link: any) => {
       return {
@@ -37,6 +39,7 @@ export async function fetchHomePageData() {
     const serviceList = sections[3]?.serviceCard?.map((card: any) => {
       return {
         ...card,
+        __component: "service-list.service-list",
         iconImage: {
           small: {
             url: card?.iconImage?.data?.attributes.formats?.small?.url,
@@ -58,6 +61,7 @@ export async function fetchHomePageData() {
 
     return {
       hero: {
+        __component: "hero.hero",
         heroImages: {
           small: {
             url: heroImages?.small?.url,
@@ -81,7 +85,10 @@ export async function fetchHomePageData() {
         },
       },
       headlineAside: headlineAside,
-      serviceList: serviceList,
+      serviceList: {
+        __component: "service-list.service-list",
+        serviceList: serviceList,
+      },
     };
   } catch (error) {
     return { error: "Error fetching data" };

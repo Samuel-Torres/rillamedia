@@ -3,10 +3,26 @@ import { ServiceCardType } from "@/app/types/serviceTypes";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 
-const ServiceCard = (service: ServiceCardType) => {
-  //   console.log("CHECK: ", service);
+type props = {
+  service: ServiceCardType;
+  isOpen: boolean;
+  setIsOpen: Function;
+};
+
+const ServiceCard = ({ isOpen, setIsOpen, service }: props) => {
+  // TO DO: CREATE MODAL AND PLACE PRICING DETAILS IN IT
+
+  const handleOpenModal = (id: number, isOpen: boolean) => {
+    if (id === service?.id) {
+      setIsOpen(!isOpen);
+    }
+  };
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onClick={() => handleOpenModal(service?.id, isOpen)}
+    >
       <div className={styles.iconImageContainer}>
         <Image
           className={styles.iconImage}

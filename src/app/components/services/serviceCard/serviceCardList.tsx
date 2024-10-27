@@ -2,11 +2,24 @@ import React from "react";
 import { serviceList, ServiceCardType } from "@/app/types/serviceTypes";
 import ServiceCard from "./serviceCard";
 
-const ServiceCardList = (services: serviceList) => {
+type props = {
+  isOpen: boolean;
+  setIsOpen: Function;
+  services: serviceList;
+};
+
+const ServiceCardList = ({ isOpen, setIsOpen, services }: props) => {
   return (
     <>
-      {services?.services?.map((service: ServiceCardType) => {
-        return <ServiceCard key={service?.id} {...service} />;
+      {services?.serviceList?.map((service: ServiceCardType) => {
+        return (
+          <ServiceCard
+            key={service?.id}
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
+            service={service}
+          />
+        );
       })}
     </>
   );

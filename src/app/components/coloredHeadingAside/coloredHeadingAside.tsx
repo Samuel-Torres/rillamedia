@@ -4,28 +4,7 @@ import styles from "./styles.module.scss";
 // components:
 import ContactRouterBtn from "../contactRouterBtn/contactRouterBtn";
 
-type dblHighlightHeading = {
-  id: number;
-  highlightOne: string;
-  textOne: string;
-  highlightTwo: string;
-  textTwo: string;
-};
-
-type ctaBtn = {
-  id: number;
-  ctaText: string;
-  routeDestination: string;
-  borderColor: string;
-  initialFontColor: string;
-};
-
-type headlineAside = {
-  AsideHeading: string;
-  TextBody: string;
-  dblHighlightHeading: dblHighlightHeading;
-  ctaBtn: ctaBtn;
-};
+import { headlineAside } from "@/app/types/componentTypes";
 
 const ColoredHeadingAside = ({
   AsideHeading,
