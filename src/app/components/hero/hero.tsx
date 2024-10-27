@@ -1,62 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import styles from "./styles.module.scss";
-// import ClientImage from "./ClientImage";
-
-type List<T> = Array<T>;
-type SocialMediaList = List<SocialMediaItem>;
-
-type SocialMediaItem = {
-  id: number;
-  href: string;
-  alt: string;
-  images: {
-    small: {
-      url: string;
-    };
-    medium: {
-      url: string;
-    };
-    large: {
-      url: string;
-    };
-  };
-};
-
-type heroProps = {
-  heroImages:
-    | {
-        small: {
-          url: string;
-          alt: string;
-        };
-        medium: {
-          url: string;
-          alt: string;
-        };
-        large: {
-          url: string;
-          alt: string;
-        };
-      }
-    | undefined;
-  highlightedHeading:
-    | {
-        id: number;
-        firstText: string;
-        highlightedText: string;
-        remainingText: string;
-      }
-    | undefined;
-  socialMediaList: SocialMediaList | undefined;
-  numberAside:
-    | {
-        id: number;
-        text: string;
-        isRow: boolean;
-      }
-    | undefined;
-};
+import { heroProps } from "@/app/types/componentTypes";
 
 const Hero = ({
   heroImages: images,

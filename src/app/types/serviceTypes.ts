@@ -1,5 +1,6 @@
 export type ServiceCardType = {
   id: number;
+  __component: string;
   title: string;
   subheading: string;
   bulletOne: string;
@@ -24,5 +25,6 @@ export type ServiceCardType = {
 };
 
 export type serviceList = {
-  services: Array<ServiceCardType>;
+  __component: string;
+  serviceList: ServiceCardType[];
 };
