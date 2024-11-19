@@ -35,6 +35,7 @@ const ContactRouterBtn = ({
               alt="arrow"
               width={20}
               height={20}
+              sizes="auto"
             />
           </span>
         </button>

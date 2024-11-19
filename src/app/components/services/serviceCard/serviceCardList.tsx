@@ -6,18 +6,25 @@ type props = {
   isOpen: boolean;
   setIsOpen: Function;
   services: serviceList;
+  setSelectedService: Function;
 };
 
-const ServiceCardList = ({ isOpen, setIsOpen, services }: props) => {
+const ServiceCardList = ({
+  isOpen,
+  setIsOpen,
+  services,
+  setSelectedService,
+}: props) => {
   return (
     <>
       {services?.serviceList?.map((service: ServiceCardType) => {
         return (
           <ServiceCard
-            key={service?.id}
+            key={service?.title}
             setIsOpen={setIsOpen}
             isOpen={isOpen}
             service={service}
+            setSelectedService={setSelectedService}
           />
         );
       })}

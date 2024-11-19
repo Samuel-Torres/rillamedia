@@ -3,6 +3,7 @@ import { Exo_2 } from "next/font/google";
 import "./globals.scss";
 // components:
 import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer/footer";
 
 const font = Exo_2({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={font.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
