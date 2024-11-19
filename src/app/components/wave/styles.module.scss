@@ -1,0 +1,29 @@
+@import "../../styles/mixins.module.scss";
+@import "../../styles/variables.module.scss";
+
+.container {
+  .svg {
+    display: none;
+  }
+
+  .path {
+    display: none;
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .container {
+    position: relative;
+    width: 100%;
+    .svg {
+      position: absolute;
+      display: flex;
+    }
+
+    .path {
+      display: flex;
+      bottom: 100rem;
+      stroke-width: 0;
+    }
+  }
+}

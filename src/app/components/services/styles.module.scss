@@ -12,6 +12,29 @@
     margin-bottom: 10rem;
   }
 
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background-color: $brandBlack;
+    padding: 2rem;
+    // @include verCent();
+    z-index: 1;
+
+    .iconImageContainer {
+      position: relative;
+      width: 10rem;
+      height: 10rem;
+    }
+
+    h3 {
+      text-align: center;
+      color: white;
+    }
+  }
+
   .cardContainer {
     flex-wrap: wrap;
     @include horCent();

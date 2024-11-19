@@ -9,6 +9,7 @@ const Hero = ({
   socialMediaList: socials,
   numberAside,
 }: heroProps) => {
+  // console.log(socials[0]?.images);
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
@@ -19,21 +20,25 @@ const Hero = ({
         </h1>
         <div className={styles.socials}>
           {socials?.map((link) => {
+            // console.log(link);
             return (
-              <div key={link?.id} className={styles.socialsImageContainer}>
-                <a
-                  href={link && link?.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              <a
+                key={link?.alt}
+                href={link && link?.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className={styles.socialsImageContainer}>
                   <Image
                     className={styles.socialImage}
                     src={link && link?.images?.small?.url}
                     alt={link && link?.alt}
                     fill={true}
+                    priority={true}
+                    sizes="auto"
                   />
-                </a>
-              </div>
+                </div>
+              </a>
             );
           })}
         </div>
@@ -43,6 +48,8 @@ const Hero = ({
               src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725931911/rillamedia/old-typical-phone_asaihu.png"
               alt="phone number"
               fill={true}
+              priority={true}
+              sizes="auto"
             />
           </div>
           <a className={styles.phoneNumber} href="tel:+4753771263">
@@ -59,6 +66,8 @@ const Hero = ({
           }
           alt="3d fractal"
           fill={true}
+          priority={true}
+          sizes="auto"
         />
       </div>
       <svg

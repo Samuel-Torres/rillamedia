@@ -7,21 +7,32 @@ type props = {
   service: ServiceCardType;
   isOpen: boolean;
   setIsOpen: Function;
+  setSelectedService: Function;
 };
 
-const ServiceCard = ({ isOpen, setIsOpen, service }: props) => {
+const ServiceCard = ({
+  isOpen,
+  setIsOpen,
+  service,
+  setSelectedService,
+}: props) => {
   // TO DO: CREATE MODAL AND PLACE PRICING DETAILS IN IT
 
-  const handleOpenModal = (id: number, isOpen: boolean) => {
-    if (id === service?.id) {
-      setIsOpen(!isOpen);
-    }
-  };
+  // const handleOpenModal = (
+  //   id: number,
+  //   isOpen: boolean,
+  //   service: ServiceCardType
+  // ) => {
+  //   if (id === service?.id) {
+  //     setSelectedService(service);
+  //     setIsOpen(!isOpen);
+  //   }
+  // };
 
   return (
     <div
       className={styles.container}
-      onClick={() => handleOpenModal(service?.id, isOpen)}
+      // onClick={() => handleOpenModal(service?.id, isOpen, service)}
     >
       <div className={styles.iconImageContainer}>
         <Image
@@ -29,6 +40,7 @@ const ServiceCard = ({ isOpen, setIsOpen, service }: props) => {
           src={service?.iconImage?.small?.url && service?.iconImage?.small?.url}
           alt={service && service?.iconImage?.small?.alt}
           fill={true}
+          sizes="auto"
         />
       </div>
       <div className={styles.infoContainer}>

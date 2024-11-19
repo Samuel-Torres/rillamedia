@@ -1,21 +1,21 @@
 export async function fetchHomePageData() {
   const currentEnvUrls: string =
     process.env.NEXT_PUBLIC_NODE_ENV === "development"
-      ? "http://localhost:1337/api/main-pages?populate=deep"
-      : "https://rillamediastrapi.onrender.com/api/main-pages?populate=deep";
+      ? "http://localhost:1337/api/main-page?populate=deep"
+      : "https://rillamediastrapi.onrender.com/api/main-page?populate=deep";
 
   try {
     const res = await fetch(currentEnvUrls, { next: { revalidate: 0 } });
-    if (!res.ok) {
-      return { error: `Failed with status: ${res.status}` };
-    }
+    // const errorResponse = await res.json();
+    // console.log("ERROR RES: ", errorResponse?.data?.attributes);
     const data = await res.json();
-    const sections = data?.data[0]?.attributes?.sections;
+    const sections = data?.data?.attributes?.sections;
     const heroImages = sections[0]?.heroImage?.data?.attributes?.formats;
 
-    // console.log("uekqrgckugyh: ", sections);
-
-    // console.log("IMAGES: ", heroImages);
+    if (!res.ok) {
+      // console.log("ERROR RES: ", res);
+      return { error: `Failed with status: ${res.status}` };
+    }
 
     const socialMediaList = sections[1]?.socialMediaLinks.map((link: any) => {
       return {
@@ -24,19 +24,23 @@ export async function fetchHomePageData() {
         alt: link.alt,
         images: {
           small: {
-            url: link?.imageSrc?.data?.attributes?.formats?.small?.url,
+            url: link?.imageSrc?.data?.attributes?.url,
           },
-          medium: {
-            url: link?.imageSrc?.data?.attributes?.formats?.medium?.url,
-          },
-          large: {
-            url: link?.imageSrc?.data?.attributes?.formats?.large?.url,
-          },
+          // small: {
+          //   url: link?.imageSrc?.data?.attributes?.formats?.small?.url,
+          // },
+          // medium: {
+          //   url: link?.imageSrc?.data?.attributes?.formats?.medium?.url,
+          // },
+          // large: {
+          //   url: link?.imageSrc?.data?.attributes?.formats?.large?.url,
+          // },
         },
       };
     });
 
     const serviceList = sections[3]?.serviceCard?.map((card: any) => {
+      // console.log("CARD: ", card?.iconImage?.data?.attributes?.formats);
       return {
         ...card,
         __component: "service-list.service-list",
@@ -58,6 +62,18 @@ export async function fetchHomePageData() {
     });
 
     const headlineAside = sections[2];
+
+    const cleansedInfoCardImage = sections[4]?.infoCard?.map((card: any) => {
+      return {
+        ...card,
+        iconImage: card?.iconImage?.data?.attributes?.url,
+      };
+    });
+
+    const infoCardsList = {
+      __component: sections[4]?.__component,
+      infoCardsList: cleansedInfoCardImage,
+    };
 
     return {
       hero: {
@@ -89,6 +105,8 @@ export async function fetchHomePageData() {
         __component: "service-list.service-list",
         serviceList: serviceList,
       },
+      infoCardsList: infoCardsList,
+      contact: sections[5],
     };
   } catch (error) {
     return { error: "Error fetching data" };

@@ -6,8 +6,8 @@ export const getReviews = async () => {
     const response = await fetch(url);
     const res = await response?.json();
     const reviews = res?.data?.result.reviews;
-    console.log("RES: ", res);
-    console.log("REV PROMISE: ", reviews);
+    // console.log("RES: ", res);
+    // console.log("REV PROMISE: ", reviews);
     return reviews;
   } catch (error) {
     console.error("Error fetching reviews:", error);

@@ -14,6 +14,7 @@ const Navbar = () => {
           src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725824192/rillamedia/open-menu_1_lmoous.png"
           alt="logo"
           fill={true}
+          sizes="auto"
         />
       </div>
       <div className={styles.navLink}>
@@ -30,6 +31,7 @@ const Navbar = () => {
             src="https://res.cloudinary.com/dvz91qyth/image/upload/v1726090165/rillamedia/Rilla_Media_8_gelkib.png"
             alt="logo"
             fill={true}
+            sizes="auto"
           />
         </div>
       </Link>
