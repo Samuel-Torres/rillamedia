@@ -6,12 +6,14 @@ import ColoredHeadingAside from "../coloredHeadingAside/coloredHeadingAside";
 import Services from "../services/services";
 import InfoCardsList from "../infoCard/infoCardsList";
 import ContactForm from "../contactForm/contactForm";
+import ClientList from "../pastClientList/clientList";
 
 import { heroProps } from "@/app/types/componentTypes";
 import { headlineAside } from "@/app/types/componentTypes";
 import { serviceList } from "@/app/types/serviceTypes";
 import { infoCardType } from "@/app/types/infoCardTypes";
 import { contactFormTypes } from "@/app/types/contactFormTypes";
+import { ClientListComponentType } from "@/app/types/clientListTypes";
 
 const Picker = (
   object:
@@ -20,6 +22,7 @@ const Picker = (
     | serviceList
     | infoCardType
     | contactFormTypes
+    | ClientListComponentType
 ) => {
   // Type guards to check if object is of type the right incoming shape
   const isHeroProps = (object: any): object is heroProps => {
@@ -40,6 +43,12 @@ const Picker = (
 
   const isContactFormTypeProps = (object: any): object is contactFormTypes => {
     return object?.__component === "contact-form.contact-form";
+  };
+
+  const isClientListComponentType = (
+    object: any
+  ): object is ClientListComponentType => {
+    return object?.__component === "past-client-list.past-client-list";
   };
 
   if (isHeroProps(object)) {
@@ -81,6 +90,16 @@ const Picker = (
 
   if (isContactFormTypeProps(object)) {
     return <ContactForm Heading={object?.Heading} />;
+  }
+
+  if (isClientListComponentType(object)) {
+    return (
+      <ClientList
+        id={object?.id}
+        __component={object?.__component}
+        clientList={object?.clientList}
+      />
+    );
   }
 };
 

@@ -1,3 +1,12 @@
+import {
+  ClientListComponentType,
+  ClientListType,
+} from "../types/clientListTypes";
+import { heroProps } from "../types/componentTypes";
+import { headlineAside } from "../types/componentTypes";
+import { infoCardList } from "../types/infoCardTypes";
+import { serviceList, ServiceCardType } from "../types/serviceTypes";
+
 export async function fetchHomePageData() {
   const currentEnvUrls: string =
     process.env.NEXT_PUBLIC_NODE_ENV === "development"
@@ -6,108 +15,141 @@ export async function fetchHomePageData() {
 
   try {
     const res = await fetch(currentEnvUrls, { next: { revalidate: 0 } });
-    // const errorResponse = await res.json();
-    // console.log("ERROR RES: ", errorResponse?.data?.attributes);
     const data = await res.json();
     const sections = data?.data?.attributes?.sections;
-    const heroImages = sections[0]?.heroImage?.data?.attributes?.formats;
+    // console.log("PRE: ", sections);
 
     if (!res.ok) {
-      // console.log("ERROR RES: ", res);
       return { error: `Failed with status: ${res.status}` };
     }
 
-    const socialMediaList = sections[1]?.socialMediaLinks.map((link: any) => {
-      return {
-        id: link?.id,
-        href: link.href,
-        alt: link.alt,
-        images: {
-          small: {
-            url: link?.imageSrc?.data?.attributes?.url,
+    let cleansedData: { [key: string]: any } = {};
+    let heroCleansed: heroProps | undefined;
+    let headlineAsideData: headlineAside | undefined;
+    let cleansedServiceList: serviceList | undefined;
+    let cleansedInfoCard: infoCardList | undefined;
+    let pastClientList: ClientListComponentType | undefined;
+
+    // console.log("START: ", cleansedData);
+
+    sections?.forEach((section: any) => {
+      const id = section?.__component;
+      if (id === "hero.hero") {
+        heroCleansed = {
+          __component: section?.__component,
+          heroImages: {
+            small: {
+              url: section?.heroImage?.data?.attributes?.formats?.small?.url,
+              alt: "small hero",
+            },
+            medium: {
+              url: section?.heroImage?.data?.attributes?.formats?.medium?.url,
+              alt: "medium hero",
+            },
+            large: {
+              url: section?.heroImage?.data?.attributes?.formats?.large?.url,
+              alt: "large hero",
+            },
           },
-          // small: {
-          //   url: link?.imageSrc?.data?.attributes?.formats?.small?.url,
-          // },
-          // medium: {
-          //   url: link?.imageSrc?.data?.attributes?.formats?.medium?.url,
-          // },
-          // large: {
-          //   url: link?.imageSrc?.data?.attributes?.formats?.large?.url,
-          // },
-        },
-      };
+          highlightedHeading: {
+            ...section?.highlightedText,
+          },
+          socialMediaList: section?.socials.map((link: any) => {
+            return {
+              id: link?.id,
+              href: link.href,
+              alt: link.alt,
+              images: {
+                small: {
+                  url: link?.imageSrc?.data?.attributes?.url,
+                },
+              },
+            };
+          }),
+          numberAside: { ...section?.numberAside },
+        };
+        Object.assign(cleansedData, { ...cleansedData, hero: heroCleansed });
+      }
+      if (id === "headling-aside.headling-aside") {
+        headlineAsideData = section;
+        Object.assign(cleansedData, {
+          ...cleansedData,
+          headlineAside: headlineAsideData,
+        });
+      }
+      if (id === "service-list.service-list") {
+        cleansedServiceList = section?.serviceCard?.map((card: any) => {
+          return {
+            ...card,
+            __component: "service-list.service-list",
+            iconImage: {
+              small: {
+                url: card?.iconImage?.data?.attributes.formats?.small?.url,
+                alt: card?.alt,
+              },
+              medium: {
+                url: card?.iconImage?.data?.attributes.formats?.medium?.url,
+                alt: card?.alt,
+              },
+              large: {
+                url: card?.iconImage?.data?.attributes.formats?.large?.url,
+                alt: card?.alt,
+              },
+            },
+          };
+        });
+        Object.assign(cleansedData, {
+          ...cleansedData,
+          serviceList: {
+            __component: "service-list.service-list",
+            serviceList: cleansedServiceList,
+          },
+        });
+      }
+      if (id === "info-cards-list.info-cards-list") {
+        cleansedInfoCard = section?.infoCard?.map((card: any) => {
+          return {
+            ...card,
+            iconImage: card?.iconImage?.data?.attributes?.url,
+          };
+        });
+        Object.assign(cleansedData, {
+          ...cleansedData,
+          infoCardsList: {
+            __component: section?.__component,
+            infoCardsList: cleansedInfoCard,
+          },
+        });
+      }
+      if (id === "contact-form.contact-form") {
+        Object.assign(cleansedData, {
+          ...cleansedData,
+          contact: section,
+        });
+      }
+      if (id === "past-client-list.past-client-list") {
+        pastClientList = sections[5]?.companyCard?.map(
+          (card: ClientListType, index: number) => {
+            return {
+              id: card?.id,
+              companyName: card?.companyName,
+              alt: card?.alt,
+              websiteUrl: card?.websiteUrl,
+              logo: card?.logo?.data[index]?.attributes?.url,
+            };
+          }
+        );
+        Object.assign(cleansedData, {
+          ...cleansedData,
+          clientList: {
+            id: section?.id,
+            __component: section?.__component,
+            clientList: pastClientList,
+          },
+        });
+      }
     });
-
-    const serviceList = sections[3]?.serviceCard?.map((card: any) => {
-      // console.log("CARD: ", card?.iconImage?.data?.attributes?.formats);
-      return {
-        ...card,
-        __component: "service-list.service-list",
-        iconImage: {
-          small: {
-            url: card?.iconImage?.data?.attributes.formats?.small?.url,
-            alt: card?.alt,
-          },
-          medium: {
-            url: card?.iconImage?.data?.attributes.formats?.medium?.url,
-            alt: card?.alt,
-          },
-          large: {
-            url: card?.iconImage?.data?.attributes.formats?.large?.url,
-            alt: card?.alt,
-          },
-        },
-      };
-    });
-
-    const headlineAside = sections[2];
-
-    const cleansedInfoCardImage = sections[4]?.infoCard?.map((card: any) => {
-      return {
-        ...card,
-        iconImage: card?.iconImage?.data?.attributes?.url,
-      };
-    });
-
-    const infoCardsList = {
-      __component: sections[4]?.__component,
-      infoCardsList: cleansedInfoCardImage,
-    };
-
-    return {
-      hero: {
-        __component: "hero.hero",
-        heroImages: {
-          small: {
-            url: heroImages?.small?.url,
-            alt: "small hero",
-          },
-          medium: {
-            url: heroImages?.medium?.url,
-            alt: "medium hero",
-          },
-          large: {
-            url: heroImages?.large?.url,
-            alt: "large hero",
-          },
-        },
-        highlightedHeading: {
-          ...sections[0]?.highlightedText,
-        },
-        socialMediaList: socialMediaList,
-        numberAside: {
-          ...sections[0]?.numberAside,
-        },
-      },
-      headlineAside: headlineAside,
-      serviceList: {
-        __component: "service-list.service-list",
-        serviceList: serviceList,
-      },
-      infoCardsList: infoCardsList,
-      contact: sections[5],
-    };
+    return cleansedData;
   } catch (error) {
     return { error: "Error fetching data" };
   }
