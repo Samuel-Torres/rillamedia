@@ -153,6 +153,7 @@ export async function fetchHomePageData() {
               companyName: card?.companyName,
               alt: card?.alt,
               websiteUrl: card?.websiteUrl,
+              // @ts-ignore
               logo: card?.logo?.data[index]?.attributes?.url,
             };
           }
