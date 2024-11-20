@@ -59,6 +59,7 @@ const Picker = (
         highlightedHeading={object.highlightedHeading}
         socialMediaList={object.socialMediaList}
         numberAside={object.numberAside}
+        clientList={object?.clientList}
       />
     );
   }

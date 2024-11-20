@@ -3,13 +3,8 @@ export type ClientListType = {
   companyName: string;
   alt: string;
   websiteUrl: string;
-  logo: {
-    data: {
-      attributes: {
-        url: string;
-      };
-    }[];
-  };
+  logo: string;
+  className: string;
 };
 
 export type ClientListComponentType = {
