@@ -1,3 +1,5 @@
+import { ClientListComponentType } from "./clientListTypes";
+
 // HERO
 export type List<T> = Array<T>;
 export type SocialMediaList = List<SocialMediaItem>;
@@ -51,6 +53,7 @@ export type heroProps = {
         isRow: boolean;
       }
     | undefined;
+  clientList: ClientListComponentType;
 };
 
 // coloredHeadlineAside:

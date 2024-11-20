@@ -2,12 +2,16 @@
 @import "../../styles/variables.module.scss";
 
 .container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column-reverse;
-  align-items: center;
   position: relative;
   height: calc(100dvh - 11rem);
+  // border: 2x solid red;
+
+  .subContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 
   .svg {
     display: none;
@@ -100,11 +104,14 @@
 @media (min-width: $smallDesktop) {
   .container {
     padding: 20rem 0;
-    flex-direction: row;
+
+    .subContainer {
+      flex-direction: row;
+    }
 
     .svg {
       position: absolute;
-      bottom: -50rem;
+      bottom: -68rem;
       display: flex;
     }
 

@@ -3,73 +3,84 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { heroProps } from "@/app/types/componentTypes";
 
+// components:
+import ClientList from "../pastClientList/clientList";
+
 const Hero = ({
   heroImages: images,
   highlightedHeading: heading,
   socialMediaList: socials,
   numberAside,
+  clientList,
 }: heroProps) => {
   // console.log(socials[0]?.images);
   return (
     <div className={styles.container}>
-      <div className={styles.textContainer}>
-        <h1>
-          {heading?.firstText}{" "}
-          <span className={styles.highlight}>{heading?.highlightedText}</span>{" "}
-          {heading?.remainingText}
-        </h1>
-        <div className={styles.socials}>
-          {socials?.map((link) => {
-            // console.log(link);
-            return (
-              <a
-                key={link?.alt}
-                href={link && link?.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className={styles.socialsImageContainer}>
-                  <Image
-                    className={styles.socialImage}
-                    src={link && link?.images?.small?.url}
-                    alt={link && link?.alt}
-                    fill={true}
-                    priority={true}
-                    sizes="auto"
-                  />
-                </div>
-              </a>
-            );
-          })}
-        </div>
-        <div className={styles.phoneNumContainer}>
-          <div className={styles.iconImageContainer}>
-            <Image
-              src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725931911/rillamedia/old-typical-phone_asaihu.png"
-              alt="phone number"
-              fill={true}
-              priority={true}
-              sizes="auto"
-            />
+      <div className={styles.subContainer}>
+        <div className={styles.textContainer}>
+          <h1>
+            {heading?.firstText}{" "}
+            <span className={styles.highlight}>{heading?.highlightedText}</span>{" "}
+            {heading?.remainingText}
+          </h1>
+          <div className={styles.socials}>
+            {socials?.map((link) => {
+              // console.log(link);
+              return (
+                <a
+                  key={link?.alt}
+                  href={link && link?.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className={styles.socialsImageContainer}>
+                    <Image
+                      className={styles.socialImage}
+                      src={link && link?.images?.small?.url}
+                      alt={link && link?.alt}
+                      fill={true}
+                      priority={true}
+                      sizes="auto"
+                    />
+                  </div>
+                </a>
+              );
+            })}
           </div>
-          <a className={styles.phoneNumber} href="tel:+4753771263">
-            {numberAside?.text}
-          </a>
+          <div className={styles.phoneNumContainer}>
+            <div className={styles.iconImageContainer}>
+              <Image
+                src="https://res.cloudinary.com/dvz91qyth/image/upload/v1725931911/rillamedia/old-typical-phone_asaihu.png"
+                alt="phone number"
+                fill={true}
+                priority={true}
+                sizes="auto"
+              />
+            </div>
+            <a className={styles.phoneNumber} href="tel:+4753771263">
+              {numberAside?.text}
+            </a>
+          </div>
+        </div>
+        <div className={styles.imageContainer}>
+          <Image
+            src={
+              images?.large?.url
+                ? images?.large?.url
+                : "https://res.cloudinary.com/dvz91qyth/image/upload/v1725827406/rillamedia/freepik-export-20240908202902eHWG_e9dseo.png"
+            }
+            alt="3d fractal"
+            fill={true}
+            priority={true}
+            sizes="auto"
+          />
         </div>
       </div>
-      <div className={styles.imageContainer}>
-        <Image
-          src={
-            images?.large?.url
-              ? images?.large?.url
-              : "https://res.cloudinary.com/dvz91qyth/image/upload/v1725827406/rillamedia/freepik-export-20240908202902eHWG_e9dseo.png"
-          }
-          alt="3d fractal"
-          fill={true}
-          priority={true}
-          sizes="auto"
-        />
-      </div>
+      <ClientList
+        id={clientList?.id}
+        __component={clientList?.__component}
+        clientList={clientList?.clientList}
+      />
       <svg
         className={styles.svg}
         viewBox="0 0 500 200"

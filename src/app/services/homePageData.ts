@@ -5,7 +5,7 @@ import {
 import { heroProps } from "../types/componentTypes";
 import { headlineAside } from "../types/componentTypes";
 import { infoCardList } from "../types/infoCardTypes";
-import { serviceList, ServiceCardType } from "../types/serviceTypes";
+import { serviceList } from "../types/serviceTypes";
 
 export async function fetchHomePageData() {
   const currentEnvUrls: string =
@@ -34,6 +34,7 @@ export async function fetchHomePageData() {
 
     sections?.forEach((section: any) => {
       const id = section?.__component;
+      console.log("HERO: ", section);
       if (id === "hero.hero") {
         heroCleansed = {
           __component: section?.__component,
@@ -67,6 +68,23 @@ export async function fetchHomePageData() {
             };
           }),
           numberAside: { ...section?.numberAside },
+          clientList: {
+            id: section?.id,
+            __component: section?.__component,
+            clientList: section?.clientList?.map(
+              (card: ClientListType, index: number) => {
+                return {
+                  id: card?.id,
+                  companyName: card?.companyName,
+                  alt: card?.alt,
+                  websiteUrl: card?.websiteUrl,
+                  // @ts-ignore
+                  logo: card?.logo?.data[0]?.attributes?.url,
+                  className: card?.className,
+                };
+              }
+            ),
+          },
         };
         Object.assign(cleansedData, { ...cleansedData, hero: heroCleansed });
       }
@@ -135,6 +153,7 @@ export async function fetchHomePageData() {
               companyName: card?.companyName,
               alt: card?.alt,
               websiteUrl: card?.websiteUrl,
+              // @ts-ignore
               logo: card?.logo?.data[index]?.attributes?.url,
             };
           }
@@ -149,6 +168,7 @@ export async function fetchHomePageData() {
         });
       }
     });
+    // console.log("CLEANSED: ", cleansedData);
     return cleansedData;
   } catch (error) {
     return { error: "Error fetching data" };
